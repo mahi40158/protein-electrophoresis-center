@@ -659,6 +659,8 @@ Send Message
 </section>
 <!-- ================= UPLOAD GEL ================= -->
 
+<!-- ================= UPLOAD GEL ================= -->
+
 <section id="upload" class="py-5 bg-light">
 
 <div class="container">
@@ -673,22 +675,69 @@ Upload Your Gel
 
 <div class="card shadow p-4">
 
+<form id="gel-upload-form" enctype="multipart/form-data">
+
+<label class="form-label">
+Your Name
+</label>
+
+<input
+type="text"
+name="fi-sender-fullName"
+class="form-control mb-3"
+placeholder="Your Name"
+required>
+
+
+<label class="form-label">
+Your Email
+</label>
+
+<input
+type="email"
+name="fi-sender-email"
+class="form-control mb-3"
+placeholder="Your Email"
+required>
+
+
 <label class="form-label">
 Select Gel Image
 </label>
 
-<input type="file" class="form-control mb-3">
+<input
+type="file"
+name="fi-file-gel-image"
+class="form-control mb-3"
+accept="image/*"
+required>
+
 
 <label class="form-label">
 Sample Information
 </label>
 
-<textarea class="form-control mb-3" rows="5"
-placeholder="Write sample information here..."></textarea>
+<textarea
+name="fi-text-sample-information"
+class="form-control mb-3"
+rows="5"
+placeholder="Write sample information here..."
+required></textarea>
 
-<button class="btn btn-primary w-100">
+
+<button
+type="submit"
+class="btn btn-primary w-100"
+id="gel-submit-btn">
 Submit Analysis Request
 </button>
+
+<p
+id="gel-form-status"
+class="text-center mt-3 mb-0">
+</p>
+
+</form>
 
 </div>
 
@@ -699,6 +748,64 @@ Submit Analysis Request
 </div>
 
 </section>
+
+
+<!-- ================= FORMINIT ================= -->
+
+<script src="https://forminit.com/sdk/v1/forminit.js"></script>
+
+<script>
+
+const forminit = new Forminit();
+
+const FORM_ID = "qdknwymyj2w";
+
+const gelForm = document.getElementById("gel-upload-form");
+
+gelForm.addEventListener("submit", async function(e) {
+
+    e.preventDefault();
+
+    const status = document.getElementById("gel-form-status");
+    const button = document.getElementById("gel-submit-btn");
+
+    button.disabled = true;
+    button.textContent = "Sending...";
+
+    status.textContent = "";
+
+    const formData = new FormData(gelForm);
+
+    const { data, error } = await forminit.submit(
+        FORM_ID,
+        formData
+    );
+
+    if (error) {
+
+        status.textContent = "Error: " + error.message;
+        status.className = "text-danger text-center mt-3 mb-0";
+
+        button.disabled = false;
+        button.textContent = "Submit Analysis Request";
+
+        return;
+    }
+
+    status.textContent =
+        "Your gel image has been submitted successfully.";
+
+    status.className =
+        "text-success text-center mt-3 mb-0";
+
+    gelForm.reset();
+
+    button.disabled = false;
+    button.textContent = "Submit Analysis Request";
+
+});
+
+</script>
 <!-- ================= FOOTER ================= -->
 
 <footer class="bg-dark text-white py-4">
