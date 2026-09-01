@@ -931,6 +931,6 @@ html[dir="rtl"] .navbar-brand .me-3{
     width: 100%;
     height: 250px;
     object-fit: contain;
+    background-color: #000;
     display: block;
-    background: #000;
 }
