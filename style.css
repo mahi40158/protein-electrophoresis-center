@@ -928,9 +928,9 @@ html[dir="rtl"] .navbar-brand .me-3{
     object-fit: contain;
 }
 .tutorial-video {
-    width: 70%;
-    height: 250px;
+    width: 50%;
+    height: 350px;
     object-fit: contain;
     background-color: #000;
-    display: white;
+    display: black;
 }
