@@ -927,3 +927,9 @@ html[dir="rtl"] .navbar-brand .me-3{
     aspect-ratio: 16 / 9;
     object-fit: contain;
 }
+.tutorial-video {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    display: block;
+}
