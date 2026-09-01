@@ -929,7 +929,7 @@ html[dir="rtl"] .navbar-brand .me-3{
 }
 .tutorial-video {
     width: 50%;
-    height: 350px;
+    height: 250px;
     object-fit: contain;
     background-color: #000;
     display: black;
